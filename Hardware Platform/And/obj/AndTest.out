@@ -1,0 +1,81 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5e49211bae60 .scope module, "AndTest" "AndTest" 2 3;
+ .timescale 0 0;
+v0x5e49211cfe00_0 .var "in_a", 0 0;
+v0x5e49211cfef0_0 .var "in_b", 0 0;
+v0x5e49211d0000_0 .net "out", 0 0, L_0x5e49211d0160;  1 drivers
+S_0x5e49211baff0 .scope module, "and_gate" "And" 2 6, 3 3 0, S_0x5e49211bae60;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "in_a";
+    .port_info 1 /INPUT 1 "in_b";
+    .port_info 2 /OUTPUT 1 "out";
+v0x5e49211cfa70_0 .net "in_a", 0 0, v0x5e49211cfe00_0;  1 drivers
+v0x5e49211cfb40_0 .net "in_b", 0 0, v0x5e49211cfef0_0;  1 drivers
+v0x5e49211cfc10_0 .net "out", 0 0, L_0x5e49211d0160;  alias, 1 drivers
+v0x5e49211cfd10_0 .net "temp_out", 0 0, L_0x5e49211d00f0;  1 drivers
+S_0x5e492117fcf0 .scope module, "nand_gate" "Nand" 3 8, 4 1 0, S_0x5e49211baff0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "in_a";
+    .port_info 1 /INPUT 1 "in_b";
+    .port_info 2 /OUTPUT 1 "out";
+L_0x5e49211d00f0 .functor NAND 1, v0x5e49211cfe00_0, v0x5e49211cfef0_0, C4<1>, C4<1>;
+v0x5e492117ff20_0 .net "in_a", 0 0, v0x5e49211cfe00_0;  alias, 1 drivers
+v0x5e49211cf4c0_0 .net "in_b", 0 0, v0x5e49211cfef0_0;  alias, 1 drivers
+v0x5e49211cf580_0 .net "out", 0 0, L_0x5e49211d00f0;  alias, 1 drivers
+S_0x5e49211cf6a0 .scope module, "not_gate" "Not" 3 9, 5 3 0, S_0x5e49211baff0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "in_a";
+    .port_info 1 /OUTPUT 1 "out";
+L_0x5e49211d0160 .functor NAND 1, L_0x5e49211d00f0, L_0x5e49211d00f0, C4<1>, C4<1>;
+v0x5e49211cf880_0 .net "in_a", 0 0, L_0x5e49211d00f0;  alias, 1 drivers
+v0x5e49211cf970_0 .net "out", 0 0, L_0x5e49211d0160;  alias, 1 drivers
+    .scope S_0x5e49211bae60;
+T_0 ;
+    %vpi_call 2 9 "$display", "Testing And Gate" {0 0 0};
+    %vpi_call 2 10 "$display", "-----------------" {0 0 0};
+    %vpi_call 2 11 "$display", "Inputs: in_a = 0, in_b = 0" {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5e49211cfe00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5e49211cfef0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 14 "$display", "Output: out = %b", v0x5e49211d0000_0 {0 0 0};
+    %vpi_call 2 15 "$display", "Inputs: in_a = 0, in_b = 1" {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5e49211cfe00_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5e49211cfef0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 18 "$display", "Output: out = %b", v0x5e49211d0000_0 {0 0 0};
+    %vpi_call 2 19 "$display", "Inputs: in_a = 1, in_b = 0" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5e49211cfe00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5e49211cfef0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 22 "$display", "Output: out = %b", v0x5e49211d0000_0 {0 0 0};
+    %vpi_call 2 23 "$display", "Inputs: in_a = 1, in_b = 1" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5e49211cfe00_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5e49211cfef0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 26 "$display", "Output: out = %b", v0x5e49211d0000_0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 6;
+    "N/A";
+    "<interactive>";
+    "And/src/AndTest.vh";
+    "./And/src/And.vh";
+    "./Nand/src/Nand.vh";
+    "./Not/src/Not.vh";
